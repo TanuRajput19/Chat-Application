@@ -17,9 +17,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json()); 
 app.use(cookieParser());
 const corsOption = {
-  origin: 'https://chat-application-frontend-z3kb.onrender.com',
+  origin: "https://chat-application-frontend-z3kb.onrender.com",
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 };
 app.use(cors(corsOption));
 

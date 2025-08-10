@@ -6,12 +6,16 @@ const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors:{
-        origin:['https://chat-application-frontend-z3kb.onrender.com'],
-        methods:['GET', 'POST'],
-    },
+  cors: {
+    origin: "https://chat-application-frontend-z3kb.onrender.com",
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
+  // Preflight requests handle
+
+  }
 });
 
+  app.options("*", cors(corsOption)); 
 export const getReceiverSocketId = (receiverId) => {
     return userSocketMap[receiverId];
 }
