@@ -13,9 +13,10 @@ const io = new Server(server, {
   // Preflight requests handle
 
   }
+  
 });
 
-  app.options("*", cors(corsOption)); 
+ 
 export const getReceiverSocketId = (receiverId) => {
     return userSocketMap[receiverId];
 }

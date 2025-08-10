@@ -22,9 +22,9 @@ const corsOption = {
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 };
-app.use(cors(corsOption));
 
-app.use(cors(corsOption)); 
+app.use(cors(corsOption));
+app.options("*", cors(corsOption));
 
 
 // routes
