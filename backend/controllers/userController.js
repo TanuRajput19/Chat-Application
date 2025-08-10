@@ -89,6 +89,7 @@ export const getOtherUsers = async (req, res) => {
         const otherUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
         return res.status(200).json(otherUsers);
     } catch (error) {
-        console.log(error);
+        console.log("Error in getOtherUsers:", error);
+        return res.status(500).json({ message: "Failed to fetch users" });
     }
-}
+};
