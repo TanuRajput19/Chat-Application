@@ -18,7 +18,7 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 };
-
+app.use(express.json());
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // ✅ Handle preflight
 
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 // ✅ Middlewares
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 app.use(cookieParser());
 
 // ✅ Routes
