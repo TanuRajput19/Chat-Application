@@ -22,7 +22,8 @@ const Signup = () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/user/register`, user, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+           Authorization: `Bearer ${token}`
         },
         withCredentials: true
       });
