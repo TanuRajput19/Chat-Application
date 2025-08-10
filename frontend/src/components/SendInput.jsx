@@ -14,6 +14,7 @@ const SendInput = () => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
+            const token = localStorage.getItem("token");
             const res = await axios.post(`${BASE_URL}/api/v1/message/send/${selectedUser?._id}`, {message}, {
                 headers:{
                     'Content-Type':'application/json',

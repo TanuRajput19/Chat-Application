@@ -9,15 +9,23 @@ const useGetOtherUsers = () => {
 
     useEffect(() => {
         const fetchOtherUsers = async () => {
-            try {
-                axios.defaults.withCredentials = true;
-                const res = await axios.get(`${BASE_URL}/api/v1/user`);
-                // store
-                console.log("other users -> ",res);
-                dispatch(setOtherUsers(res.data));
-            } catch (error) {
-                console.log(error);
-            }
+          try {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.get(
+      "https://chat-application-backend.onrender.com/api/v1/user",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        withCredentials: true
+      }
+    );
+
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
         }
         fetchOtherUsers();
     }, [])
