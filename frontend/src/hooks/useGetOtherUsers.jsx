@@ -2,34 +2,34 @@ import React, { useEffect } from 'react';
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setOtherUsers } from '../redux/userSlice';
-import { BASE_URL } from '..';
 
 const useGetOtherUsers = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        const fetchOtherUsers = async () => {
-          try {
-    const token = localStorage.getItem("token");
+  useEffect(() => {
+    const fetchOtherUsers = async () => {
+      try {
+        const token = localStorage.getItem("token");
 
-    const res = await axios.get(
-      "https://chat-application-backend.onrender.com/api/v1/user",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        withCredentials: true
+        const res = await axios.get(
+          "https://chat-application-backend.onrender.com/api/v1/user",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
+            withCredentials: true
+          }
+        );
+
+        // ✅ Dispatch to Redux store
+        dispatch(setOtherUsers(res.data));
+      } catch (err) {
+        console.log("Error fetching other users:", err);
       }
-    );
+    };
 
-    return res.data;
-  } catch (err) {
-    console.log(err);
-  }
-        }
-        fetchOtherUsers();
-    }, [])
+    fetchOtherUsers();
+  }, [dispatch]);
+};
 
-}
-
-export default useGetOtherUsers
+export default useGetOtherUsers;
