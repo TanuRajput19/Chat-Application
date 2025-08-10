@@ -20,6 +20,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // ✅ Handle preflight
+
 
 // ✅ Extra CORS headers
 app.use((req, res, next) => {
